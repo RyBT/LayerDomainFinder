@@ -38,6 +38,9 @@ namespace Layer
         //存在的子域名
         public static List<string> DomainList = null;
 
+        //字典位置
+        public static string dictPath = "dic.txt";
+
         //是否停止
         public static bool isrun = true;
 
@@ -149,8 +152,6 @@ namespace Layer
 
         private void bt_control_Click(object sender, EventArgs e)
         {
-            //Tools.CheckWeb("http://3g.wandoujia.com/");
-            //return;
             if (txt_domain.Text.Trim()=="")
             {
                 MessageBox.Show("请输入域名");
@@ -249,14 +250,14 @@ namespace Layer
             
             if (isEnumerate)
             {
-                if (File.Exists("dic.txt"))
+                if (File.Exists(dictPath))
                 {
-                    diclist = File.ReadAllLines("dic.txt");
+                    diclist = File.ReadAllLines(dictPath);
                 }
                 else
                 {
                     bt_control.Text = "启 动";
-                    MessageBox.Show("字典文件dic.txt不存在,请放置在本程序同目录下");
+                    MessageBox.Show("字典文件" + dictPath + "不存在,请放置在本程序同目录下");
                     return;
                 }
                 bool isgo = true;
@@ -299,6 +300,19 @@ namespace Layer
             Th.Start(ReqDns);
         }
 
+        private void dict_control_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                dictPath = fileDialog.FileName;//返回文件的完整路径
+            }
+            if (dictPath != null)
+            {
+                textBox1.Text = dictPath.Substring(dictPath.LastIndexOf('\\') + 1);
+            }
+        }
+
         private void LV_result_DoubleClick(object sender, EventArgs e)
         {
             if (LV_result.SelectedItems.Count > 0)
@@ -315,10 +329,10 @@ namespace Layer
             }
         }
 
-        private void linkLabel1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.cnseay.com/");
-        }
+        // private void linkLabel1_Click(object sender, EventArgs e)
+        // {
+        //     System.Diagnostics.Process.Start("http://www.cnseay.com/");
+        // }
 
         private void LV_result_ColumnClick(object sender, ColumnClickEventArgs e)
         {

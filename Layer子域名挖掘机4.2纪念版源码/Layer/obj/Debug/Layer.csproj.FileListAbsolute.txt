@@ -53,3 +53,15 @@ C:\Users\Administrator\Desktop\Layer子域名挖掘机4.1 重构版源码\Layer\
 C:\Users\Administrator\Desktop\Layer子域名挖掘机4.1 重构版源码\Layer\bin\Debug\Layer.exe
 C:\Users\Administrator\Desktop\Layer子域名挖掘机4.1 重构版源码\Layer\bin\Debug\Layer.pdb
 C:\Users\Administrator\Desktop\Layer子域名挖掘机4.1 重构版源码\Layer\bin\Debug\ARSoft.Tools.Net.xml
+D:\tools\layer\Layer.exe.config
+D:\tools\layer\Layer.exe
+D:\tools\layer\Layer.pdb
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.csprojResolveAssemblyReference.cache
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.F_main.resources
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.Properties.Resources.resources
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.csproj.GenerateResource.Cache
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.exe
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.pdb
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.csproj.AssemblyReference.cache
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.csproj.SuggestedBindingRedirects.cache
+D:\workspace\c#\LayerDomainFinder\Layer子域名挖掘机4.2纪念版源码\Layer\obj\Debug\Layer.csproj.CoreCompileInputs.cache

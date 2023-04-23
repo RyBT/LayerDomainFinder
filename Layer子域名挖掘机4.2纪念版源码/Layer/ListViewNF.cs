@@ -9,6 +9,10 @@ namespace Layer
 {
     public class ListViewNF: System.Windows.Forms.ListView
     {
+        public new void SetStyle(ControlStyles flag, bool value)
+        {
+            base.SetStyle(flag, value);
+        }
         public ListViewNF()
         {
             // 开启双缓冲
