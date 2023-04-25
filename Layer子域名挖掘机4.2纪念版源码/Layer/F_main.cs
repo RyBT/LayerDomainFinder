@@ -39,7 +39,7 @@ namespace Layer
         public static List<string> DomainList = null;
 
         //字典位置
-        public static string dictPath = "dic.txt";
+        public static string dictPath = "请选择字典...";
 
         //是否停止
         public static bool isrun = true;
@@ -70,6 +70,33 @@ namespace Layer
         private ListViewColumnSorter lvwColumnSorter;
 
         #endregion
+
+        //chrome注册表位置
+        private const string ChromeAppKey = @"\Software\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe";
+        //firefox注册表位置
+        private const string FirefoxAppKey = @"\Software\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe";
+        //edge注册表位置
+        private const string MSEdgeAppKey = @"\Software\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe";
+
+        public void label5_Click(object sender, EventArgs e)
+        {
+            if(txt_domain.Text == null || txt_domain.Text.Length == 0)
+            {
+                MessageBox.Show("请输入域名");
+            } 
+            else
+            {
+                string url = "https://crt.sh/?q=" + txt_domain.Text;
+                try
+                {
+                    System.Diagnostics.Process.Start(url);
+                } 
+                catch(Exception)
+                {
+                    MessageBox.Show("打开浏览器错误");
+                }
+            }
+        }
 
         public void AllStart(object RD)
         {
@@ -106,7 +133,8 @@ namespace Layer
             }));
 
         }
-        public void updatever()
+        //废弃
+        /*public void updatever()
         {
             try
             {
@@ -121,7 +149,7 @@ namespace Layer
                 //避免检测新版失败老提示，就不提醒了
             }
             Thread.CurrentThread.Abort();
-        }
+        }*/
 
         private void F_main_Load(object sender, EventArgs e)
         {
@@ -133,8 +161,8 @@ namespace Layer
             cmb_dns.SelectedIndex = 2;
             cmb_thread.SelectedIndex = 0;
             //获取更新
-            update = new Thread(updatever);
-            update.Start();
+            //update = new Thread(updatever);
+            //update.Start();
         }
 
         private void F_main_FormClosing(object sender, FormClosingEventArgs e)
@@ -257,7 +285,7 @@ namespace Layer
                 else
                 {
                     bt_control.Text = "启 动";
-                    MessageBox.Show("字典文件" + dictPath + "不存在,请放置在本程序同目录下");
+                    MessageBox.Show("请选择正确的字典");
                     return;
                 }
                 bool isgo = true;
@@ -303,6 +331,7 @@ namespace Layer
         private void dict_control_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "文本|*.txt";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 dictPath = fileDialog.FileName;//返回文件的完整路径
@@ -357,6 +386,26 @@ namespace Layer
 
             // 用新的排序方法对ListView排序
             this.LV_result.Sort();
+        }
+
+        private void IPv4SearchMenuItem_Click(object sender, EventArgs e)
+        {
+            if (LV_result.SelectedItems[0].SubItems.Count > 2)
+            {
+                if (LV_result.SelectedItems[0].SubItems[1] != null)
+                {
+                    string[] ips = LV_result.SelectedItems[0].SubItems[1].Text.Split(',');
+                    MessageBox.Show(ips.Length.ToString());
+                    for (int i = 0;i < ips.Length;i++)
+                    {
+                        if (ips[i] != null && ips[i].Length > 0)
+                        {
+                            System.Diagnostics.Process.Start("https://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery=" + ips[i] + "&queryOption=ipv4");
+                        }
+                    }
+                    
+                }
+            }
         }
 
         private void 打开网站ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -454,7 +503,9 @@ namespace Layer
 
         private void F_main_SizeChanged(object sender, EventArgs e)
         {
-            LV_result.Columns[1].Width = LV_result.Width - LV_result.Columns[0].Width - LV_result.Columns[2].Width - LV_result.Columns[3].Width - LV_result.Columns[4].Width - LV_result.Columns[5].Width - 30;
+            LV_result.Columns[1].Width = LV_result.Width - LV_result.Columns[0].Width 
+                - LV_result.Columns[2].Width - LV_result.Columns[3].Width - LV_result.Columns[4].Width 
+                - LV_result.Columns[5].Width - 30;
         }
 
         private void 复制所选ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -470,5 +521,6 @@ namespace Layer
                 Clipboard.SetDataObject(list);
             }
         }
+
     }
 }
